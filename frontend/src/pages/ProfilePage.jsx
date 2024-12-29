@@ -69,7 +69,7 @@ const ProfilePage = () => {
           {/* User information */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <div className="text-gray-600 flex items-center gap-2">
+              <div className="text-gray-700 flex items-center gap-2">
                 <User className="size-5" />
                 Full name
               </div>
@@ -79,7 +79,7 @@ const ProfilePage = () => {
             </div>
 
             <div className="space-y-2">
-              <div className="text-gray-600 flex items-center gap-2">
+              <div className="text-gray-700 flex items-center gap-2">
                 <Mail className="size-5" />
                 Email Address
               </div>

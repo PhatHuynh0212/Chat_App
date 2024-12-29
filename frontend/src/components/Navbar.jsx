@@ -15,7 +15,7 @@ const Navbar = () => {
               to="/"
               className="flex items-center gap-2 hover:opacity-80 transition-all"
             >
-              <div className="size-9 rounded-lg bg-primary-10 flex items-center justify-center">
+              <div className="size-9 rounded-lg bg-primary/20 flex items-center justify-center">
                 <MessageSquare className="size-7 text-primary" />
               </div>
               <span className="text-lg font-bold">ChatApp</span>
