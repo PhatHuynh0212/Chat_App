@@ -15,7 +15,7 @@ const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
   const { theme } = useThemeStore();
 
-  // Add attribute on <html>
+  // Add data-theme on <html>
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);

@@ -138,8 +138,8 @@ const LoginPage = () => {
 
       {/* Right side */}
       <AuthImage
-        title="Join with us"
-        subtitle="Connect with friends, share many moments and stay in touch with yours loves ones."
+        title="Welcome back!"
+        subtitle="Sign in to continue your conversations and keep in touch with your friends."
       />
     </div>
   );
