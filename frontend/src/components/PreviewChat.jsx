@@ -34,10 +34,19 @@ const PreviewChat = () => {
                 {PREVIEW_MESSAGE.map((mess) => (
                   <div
                     key={mess.id}
-                    className={`flex ${
-                      mess.isSent ? "justify-end" : "justify-start"
+                    className={`flex flex-col ${
+                      mess.isSent ? "items-end" : "items-start"
                     }`}
                   >
+                    <p
+                      className={`text-[10px] mt-1 ${
+                        mess.isSent
+                          ? "text-primary-content/70 text-right"
+                          : "text-base-content/70"
+                      }`}
+                    >
+                      12:00 PM
+                    </p>
                     <div
                       className={`max-w-[80%] rounded-xl p-3 shadow-sm ${
                         mess.isSent
@@ -46,15 +55,6 @@ const PreviewChat = () => {
                       }`}
                     >
                       <p className="text-sm">{mess.content}</p>
-                      <p
-                        className={`text-[10px] mt-1 ${
-                          mess.isSent
-                            ? "text-primary-content/70 text-right"
-                            : "text-base-content/70"
-                        }`}
-                      >
-                        12:00 PM
-                      </p>
                     </div>
                   </div>
                 ))}
