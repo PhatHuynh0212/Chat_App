@@ -32,6 +32,7 @@ const MessageInput = () => {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
+
     if (!text.trim() && !image) {
       return;
     }
