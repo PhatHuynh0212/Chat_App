@@ -5,8 +5,7 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./config/database.js";
 import { ENV_VAR } from "./config/envVars.js";
-
-const app = express();
+import { app, server } from "./lib/socket.js";
 
 const PORT = ENV_VAR.PORT;
 
@@ -23,7 +22,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoutes);
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is running on port:", PORT);
   connectDB();
 });

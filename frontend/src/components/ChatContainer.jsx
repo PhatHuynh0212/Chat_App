@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useChatStore } from "../store/useChatStore.js";
 import ChatHeader from "./ChatHeader.jsx";
 import MessageInput from "./MessageInput.jsx";
@@ -7,13 +7,37 @@ import { useAuthStore } from "../store/useAuthStore.js";
 import { formatMessageTime } from "../lib/utils.js";
 
 const ChatContainer = () => {
-  const { messages, getMessages, isMessagesLoading, selectedUser } =
-    useChatStore();
+  const {
+    messages,
+    getMessages,
+    isMessagesLoading,
+    selectedUser,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  } = useChatStore();
   const { authUser } = useAuthStore();
+  const messageScrollRef = useRef(null);
 
   useEffect(() => {
     getMessages(selectedUser._id);
-  }, [getMessages, selectedUser._id]);
+
+    subscribeToMessages();
+
+    return () => {
+      unsubscribeFromMessages();
+    };
+  }, [
+    getMessages,
+    selectedUser._id,
+    subscribeToMessages,
+    unsubscribeFromMessages,
+  ]);
+
+  useEffect(() => {
+    if (messageScrollRef.current && messages) {
+      messageScrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   if (isMessagesLoading) {
     return (
@@ -26,7 +50,7 @@ const ChatContainer = () => {
   }
 
   return (
-    <div className="flex-1 flex-col overflow-auto">
+    <div className="flex flex-1 flex-col overflow-auto">
       <ChatHeader />
 
       {/* Message View */}
@@ -34,6 +58,7 @@ const ChatContainer = () => {
         {messages.map((message) => (
           <div
             key={message._id}
+            ref={messageScrollRef}
             className={`chat ${
               message?.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
@@ -55,25 +80,15 @@ const ChatContainer = () => {
                 {formatMessageTime(message?.createdAt)}
               </time>
             </div>
-            <div className="chat-bubble flex flex-col">
-              {message.image && (
-                <img
-                  src={message.image}
-                  alt="Image"
-                  className="sm:max-w-[200px] mb-2 rounded-lg"
-                />
-              )}
-              {message.text && (
-                <p
-                  className={`${
-                    message?.senderId === authUser._id
-                      ? "text-right"
-                      : "text-left"
-                  }`}
-                >
-                  {message.text}
-                </p>
-              )}
+            {message.image && (
+              <img
+                src={message.image}
+                alt="Image"
+                className="max-w-[200px] mb-2 rounded-lg"
+              />
+            )}
+            <div className="chat-bubble">
+              {message.text && <p>{message.text}</p>}
             </div>
           </div>
         ))}
