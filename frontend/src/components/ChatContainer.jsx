@@ -80,15 +80,23 @@ const ChatContainer = () => {
                 {formatMessageTime(message?.createdAt)}
               </time>
             </div>
-            {message.image && (
-              <img
-                src={message.image}
-                alt="Image"
-                className="max-w-[200px] mb-2 rounded-lg"
-              />
-            )}
             <div className="chat-bubble">
-              {message.text && <p>{message.text}</p>}
+              {message.image && (
+                <img
+                  src={message.image}
+                  alt="Image"
+                  className={`max-w-[200px] py-[0.5rem] rounded-lg`}
+                />
+              )}
+              {message.text && (
+                <p
+                  className={`${
+                    message?.senderId === authUser?._id ? "text-right" : ""
+                  }`}
+                >
+                  {message.text}
+                </p>
+              )}
             </div>
           </div>
         ))}
