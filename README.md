@@ -21,6 +21,7 @@
 - [TailwindCSS](https://tailwindcss.com): Build the interface just by declaring the class in the HTML file, create skeleton very quickly.
 - [daisy UI](https://daisyui.com/): A Tailwind CSS component library that simplifies UI design with pre-built themes and components.
 - [Cloudinary](https://cloudinary.com/): A cloud-based media management service for optimizing, storing, and delivering images and videos.
+- [Socket.io](https://socket.io/): A real-time communication library enabling WebSocket-based interactions for live updates and messaging.
 - [Node.js](https://nodejs.org/docs/latest/api/): Process requests from users and manage data efficiently.
 - [Express.js](https://expressjs.com/): Builds a backend API to handle functions such as user authentication, product management, cart and orders.
 - [MongoDB](https://www.mongodb.com/): Stores website data.
